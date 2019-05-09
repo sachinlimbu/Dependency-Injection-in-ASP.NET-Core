@@ -1,0 +1,17 @@
+﻿@page
+@model TennisBookings.Pages.HomeModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h1>Home</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-info" role="alert">
+            <h4>How's the weather?</h4>
+            @*<p>@Html.DisplayFor(model => model.HomeView.WeatherDescription)</p>*@
+            @Model.HomeView.WeatherDescription
+        </div>
+    </div>
+</div>
