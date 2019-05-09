@@ -11,19 +11,22 @@ namespace TennisBookings.Pages
 {
     public class HomeModel : PageModel
     {
+        private readonly IWeatherForecaster _weatherForecaster;
+
         public HomeViewModel HomeView { get; set; }
 
-        public HomeModel()
+        public HomeModel(IWeatherForecaster weatherForecaster)
         {
             HomeView = new HomeViewModel();
+            this._weatherForecaster = weatherForecaster;
         }
 
         public void OnGet()
         {
             //var viewModel = new HomeViewModel();
-            var weatherForecaster = new WeatherForecaster();
+            //var weatherForecaster = new WeatherForecaster();
 
-            var currentWeather = weatherForecaster.GetCurrentWeather();
+            var currentWeather = _weatherForecaster.GetCurrentWeather();
 
             switch (currentWeather.WeatherCondition)
             {
