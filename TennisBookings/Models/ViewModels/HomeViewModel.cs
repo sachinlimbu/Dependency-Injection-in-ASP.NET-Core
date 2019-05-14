@@ -8,5 +8,6 @@ namespace TennisBookings.Models.ViewModels
     public class HomeViewModel
     {
         public string WeatherDescription { get; set; }
+        public bool DisplayWeatherForecast { get; internal set; }
     }
 }

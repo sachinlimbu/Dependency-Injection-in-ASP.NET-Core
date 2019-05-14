@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using TennisBookings.Configuration;
 using TennisBookings.Services;
 
 namespace TennisBookings
@@ -32,12 +34,15 @@ namespace TennisBookings
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             //Registering Your First Service
 
-            services.AddTransient<IWeatherForecaster, WeatherForecaster>();
-            
+            services.AddSingleton<IWeatherForecaster, WeatherForecaster>();
+            services.TryAddSingleton<IWeatherForecaster, AmazingWeatherForecaster>();
+            services.Configure<FeaturesConfiguration>(Configuration.GetSection("Features"));
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
